@@ -664,7 +664,7 @@ class CardPage extends StatelessWidget {
               ),
             ),
             const Positioned(
-              left: 255,
+              left: 257,
               top: 50,
               child: Icon(
                 Icons.severe_cold_rounded,
@@ -732,7 +732,7 @@ class CardPage extends StatelessWidget {
                 'Manage payment methods',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 95, 95, 95),
+                  color: Colors.black,
                 ),
               ),
             ),
