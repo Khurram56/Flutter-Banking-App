@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: double.infinity,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(248, 245, 201, 107),
+                        color:const Color.fromARGB(248, 245, 201, 107),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       margin: const EdgeInsets.all(5),
@@ -716,6 +716,14 @@ class CardPage extends StatelessWidget {
                 ),
               ),
             ),
+             Positioned(
+              top: 185,
+              left: 10,
+              right: 10,
+              child: CustomPaint(
+                painter: LinePainter(),
+              ),
+            ),
             const Positioned(
               left: 18,
               top: 190,
@@ -749,5 +757,24 @@ class CardPage extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class LinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color =const Color.fromARGB(248, 185, 181, 172)// Change color as needed
+      ..strokeWidth = 0.5;
+
+    const start =Offset(0, 0); // Change start point as needed
+    final end = Offset(size.width, 0); // Change end point as needed
+
+    canvas.drawLine(start, end, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
