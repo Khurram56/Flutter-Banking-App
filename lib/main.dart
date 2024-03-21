@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: double.infinity,
                       height: 200,
                       decoration: BoxDecoration(
-                        color:const Color.fromARGB(248, 245, 201, 107),
+                        color: const Color.fromARGB(248, 245, 201, 107),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       margin: const EdgeInsets.all(5),
@@ -382,35 +382,35 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SizedBox(
-              width: 20,
+              // width: 20,
               child: Icon(Icons.home),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
-              width: 20,
+              // width: 20,
               child: Icon(Icons.credit_card),
             ),
             label: 'credit Card',
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
-              width: 20,
+              // width: 20,
               child: Icon(Icons.qr_code_scanner_rounded),
             ),
             label: 'scan',
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
-              width: 20,
+              // width: 20,
               child: Icon(Icons.person),
             ),
             label: 'Members',
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
-              width: 20,
+              // width: 20,
               child: Icon(Icons.settings),
             ),
             label: 'Settings',
@@ -418,7 +418,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor:
-            Color.fromARGB(248, 245, 201, 107), // Color of selected icon
+            const Color.fromARGB(248, 245, 201, 107), // Color of selected icon
         unselectedItemColor: Colors.grey, // Color of unselected icon
         onTap: _onItemTapped,
         selectedFontSize: 12,
@@ -481,7 +481,7 @@ class CardPage extends StatelessWidget {
                     width: 310,
                     height: 200,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 236, 139, 148),
+                      color: const Color.fromARGB(255, 236, 139, 148),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     margin: const EdgeInsets.only(left: 20),
@@ -716,7 +716,7 @@ class CardPage extends StatelessWidget {
                 ),
               ),
             ),
-             Positioned(
+            Positioned(
               top: 185,
               left: 10,
               right: 10,
@@ -726,16 +726,16 @@ class CardPage extends StatelessWidget {
             ),
             const Positioned(
               left: 18,
-              top: 190,
+              top: 203,
               child: Icon(
                 Icons.settings_outlined,
-                size: 50,
+                size: 40,
                 color: Color.fromARGB(248, 185, 181, 172),
               ),
             ),
             const Positioned(
-              top: 203,
-              left: 85,
+              top: 213,
+              left: 82,
               child: Text(
                 'Manage payment methods',
                 style: TextStyle(
@@ -746,7 +746,7 @@ class CardPage extends StatelessWidget {
             ),
             const Positioned(
               right: 20,
-              top: 190,
+              top: 198,
               child: Icon(
                 Icons.chevron_right_rounded,
                 size: 50,
@@ -764,10 +764,11 @@ class LinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color =const Color.fromARGB(248, 185, 181, 172)// Change color as needed
+      ..color =
+          const Color.fromARGB(248, 185, 181, 172) // Change color as needed
       ..strokeWidth = 0.5;
 
-    const start =Offset(0, 0); // Change start point as needed
+    const start = Offset(0, 0); // Change start point as needed
     final end = Offset(size.width, 0); // Change end point as needed
 
     canvas.drawLine(start, end, paint);
