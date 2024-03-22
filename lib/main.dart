@@ -166,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color:  Color.fromARGB(255, 37, 37, 37),
+                          color: Color.fromARGB(255, 37, 37, 37),
                         ),
                       ),
                     ),
@@ -383,9 +383,9 @@ class _MyHomePageState extends State<MyHomePage> {
           : _selectedIndex == 1
               ? const CardPage()
               : _selectedIndex == 2
-              ?  const QRViewExample()
-              : const SizedBox(),
-              // QRCodeScanner
+                  ? const QRViewExample()
+                  : const SizedBox(),
+      // QRCodeScanner
       bottomNavigationBar: BottomNavigationBar(
         // iconTheme: IconThemeData(color: Colors.red),
         items: const <BottomNavigationBarItem>[
@@ -656,31 +656,61 @@ class CardPage extends StatelessWidget {
                 ),
               ),
             ),
-            const Positioned(
+            Positioned(
               left: 30,
               top: 50,
-              child: Icon(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondScreen()),
+            );
+                  // const SecondScreen();
+                  if (kDebugMode) {
+                    print('Icon pressed!');
+                  }
+                },
+              child: const Icon(
                 Icons.add_circle,
                 size: 50,
                 color: Color.fromARGB(248, 185, 181, 172),
               ),
+              ),
             ),
-            const Positioned(
+            Positioned(
               left: 150,
               top: 50,
-              child: Icon(
+              child: GestureDetector(
+                onTap: () {
+                  // Define the action you want to take when the icon is pressed
+                  // For example, you can show a toast, navigate to a new screen, etc.
+                  if (kDebugMode) {
+                    print('Icon pressed!');
+                  }
+                },
+              child: const Icon(
                 Icons.credit_card,
                 size: 50,
                 color: Color.fromARGB(248, 185, 181, 172),
               ),
+              ),
             ),
-            const Positioned(
+            Positioned(
               left: 257,
               top: 50,
-              child: Icon(
-                Icons.severe_cold_rounded,
-                size: 50,
-                color: Color.fromARGB(248, 185, 181, 172),
+              child: GestureDetector(
+                onTap: () {
+                  // Define the action you want to take when the icon is pressed
+                  // For example, you can show a toast, navigate to a new screen, etc.
+                  if (kDebugMode) {
+                    print('Icon pressed!');
+                  }
+                },
+                child: const Icon(
+                  Icons.severe_cold_rounded,
+                  size: 50,
+                  color: Color.fromARGB(248, 185, 181, 172),
+                ),
               ),
             ),
             const Positioned(
@@ -810,11 +840,8 @@ class LinePainter extends CustomPainter {
 //   }
 // }
 
-
-
-
 class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+  const QRViewExample({super.key});
 
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
@@ -973,5 +1000,42 @@ class _QRViewExampleState extends State<QRViewExample> {
   void dispose() {
     controller?.dispose();
     super.dispose();
+  }
+}
+
+
+
+
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Enter amount',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Go back to the previous screen
+              },
+              child: const Text('Return to First Screen'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
