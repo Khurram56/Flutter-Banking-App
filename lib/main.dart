@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -662,37 +662,40 @@ class CardPage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondScreen()),
-            );
+                    context,
+                    MaterialPageRoute(builder: (context) => const SecondScreen()),
+                  );
                   // const SecondScreen();
                   if (kDebugMode) {
                     print('Icon pressed!');
                   }
                 },
-              child: const Icon(
-                Icons.add_circle,
-                size: 50,
-                color: Color.fromARGB(248, 185, 181, 172),
-              ),
+                child: const Icon(
+                  Icons.add_circle,
+                  size: 50,
+                  color: Color.fromARGB(248, 185, 181, 172),
+                ),
               ),
             ),
             Positioned(
-              left: 150,
+             left: 150,
               top: 50,
               child: GestureDetector(
                 onTap: () {
-                  // Define the action you want to take when the icon is pressed
-                  // For example, you can show a toast, navigate to a new screen, etc.
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CreditCardScreen()),
+                  );
+                  // const SecondScreen();
                   if (kDebugMode) {
                     print('Icon pressed!');
                   }
                 },
-              child: const Icon(
-                Icons.credit_card,
-                size: 50,
-                color: Color.fromARGB(248, 185, 181, 172),
-              ),
+                 child: const Icon(
+                  Icons.credit_card,
+                  size: 50,
+                  color: Color.fromARGB(248, 185, 181, 172),
+                ),
               ),
             ),
             Positioned(
@@ -700,8 +703,11 @@ class CardPage extends StatelessWidget {
               top: 50,
               child: GestureDetector(
                 onTap: () {
-                  // Define the action you want to take when the icon is pressed
-                  // For example, you can show a toast, navigate to a new screen, etc.
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  CardFreezeScreen( key: UniqueKey(),)),
+                  );
+                  // const SecondScreen();
                   if (kDebugMode) {
                     print('Icon pressed!');
                   }
@@ -878,6 +884,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                 children: <Widget>[
                   if (result != null)
                     Text(
+                        // ignore: deprecated_member_use
                         'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                   else
                     const Text('Scan a code'),
@@ -911,6 +918,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                               builder: (context, snapshot) {
                                 if (snapshot.data != null) {
                                   return Text(
+                                      // ignore: deprecated_member_use
                                       'Camera facing ${describeEnum(snapshot.data!)}');
                                 } else {
                                   return const Text('loading');
@@ -1003,9 +1011,6 @@ class _QRViewExampleState extends State<QRViewExample> {
   }
 }
 
-
-
-
 class SecondScreen extends StatelessWidget {
   const SecondScreen({super.key});
 
@@ -1031,7 +1036,240 @@ class SecondScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context); // Go back to the previous screen
               },
-              child: const Text('Return to First Screen'),
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CreditCardScreen extends StatelessWidget {
+  const CreditCardScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Credit Card Details'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(248, 245, 201, 107),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: const EdgeInsets.all(5),
+                    ),
+                    const Positioned(
+                      top: 20,
+                      left: 20,
+                      child: Text(
+                        'BVC',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      top: 20,
+                      right: 20,
+                      child: Text(
+                        'VISA',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 24,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      top: 95,
+                      left: 20,
+                      child: Text(
+                        'Available balance',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 95, 95, 95),
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      top: 120,
+                      left: 20,
+                      child: Text(
+                        '2,640.24',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      top: 150,
+                      right: 20,
+                      child: Text(
+                        'Card 5679****',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: Color.fromARGB(255, 95, 95, 95),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+class CardFreezeScreen extends StatefulWidget {
+  const CardFreezeScreen({required Key key}) : super(key: key);
+
+  @override
+  _CardFreezeScreenState createState() => _CardFreezeScreenState();
+}
+
+class _CardFreezeScreenState extends State<CardFreezeScreen> {
+  late SharedPreferences _prefs; // Instance variable to hold SharedPreferences
+  bool isCardFrozen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initPrefs(); // Initialize SharedPreferences when the widget is created
+  }
+
+  // Initialize SharedPreferences
+  void _initPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      // Retrieve the frozen state of the card from SharedPreferences
+      isCardFrozen = _prefs.getBool('isCardFrozen') ?? false;
+    });
+  }
+
+  // Function to toggle card freeze state
+  void toggleCardFreeze() async {
+    setState(() {
+      isCardFrozen = !isCardFrozen;
+    });
+    // Save the updated card freeze state to SharedPreferences
+    await _prefs.setBool('isCardFrozen', isCardFrozen);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Card Freeze'),
+      ),
+      body: Center(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: isCardFrozen ? Colors.grey[300] : const Color.fromARGB(248, 245, 201, 107),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: const EdgeInsets.all(5),
+                ),
+              ],
+            ),
+            const Positioned(
+              top: 20,
+              left: 20,
+              child: Text(
+                'BVC',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            const Positioned(
+              top: 20,
+              right: 20,
+              child: Text(
+                'VISA',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 24,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            const Positioned(
+              top: 95,
+              left: 20,
+              child: Text(
+                'Available balance',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 95, 95, 95),
+                ),
+              ),
+            ),
+            const Positioned(
+              top: 120,
+              left: 20,
+              child: Text(
+                '2,640.24',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 150,
+              right: 20,
+              child: Text(
+                'Card ${isCardFrozen ? 'Frozen' : '5679****'}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  color: Color.fromARGB(255, 95, 95, 95),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 400,
+              left: 150,
+              child: GestureDetector(
+                onTap: toggleCardFreeze,
+                child: Icon(
+                  size: 70,
+                  Icons.severe_cold_rounded,
+                  color: isCardFrozen ? Colors.red : Colors.green,
+                ),
+              ),
             ),
           ],
         ),
