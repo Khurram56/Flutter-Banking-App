@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'My Banking App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
       home: const MyHomePage(),
     );
@@ -663,7 +663,8 @@ class CardPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SecondScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const SecondScreen()),
                   );
                   // const SecondScreen();
                   if (kDebugMode) {
@@ -678,20 +679,21 @@ class CardPage extends StatelessWidget {
               ),
             ),
             Positioned(
-             left: 150,
+              left: 150,
               top: 50,
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CreditCardScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const CreditCardScreen()),
                   );
                   // const SecondScreen();
                   if (kDebugMode) {
                     print('Icon pressed!');
                   }
                 },
-                 child: const Icon(
+                child: const Icon(
                   Icons.credit_card,
                   size: 50,
                   color: Color.fromARGB(248, 185, 181, 172),
@@ -705,7 +707,10 @@ class CardPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  CardFreezeScreen( key: UniqueKey(),)),
+                    MaterialPageRoute(
+                        builder: (context) => CardFreezeScreen(
+                              key: UniqueKey(),
+                            )),
                   );
                   // const SecondScreen();
                   if (kDebugMode) {
@@ -713,7 +718,7 @@ class CardPage extends StatelessWidget {
                   }
                 },
                 child: const Icon(
-                  Icons.severe_cold_rounded,
+                  Icons.ac_unit_rounded,
                   size: 50,
                   color: Color.fromARGB(248, 185, 181, 172),
                 ),
@@ -1012,31 +1017,43 @@ class _QRViewExampleState extends State<QRViewExample> {
 }
 
 class SecondScreen extends StatelessWidget {
-  const SecondScreen({super.key});
+  const SecondScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Screen'),
+        title: const Text('Add Money'),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              child: const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Enter amount',
-                ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Enter amount',
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.grey[200],
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // Go back to the previous screen
-              },
-              child: const Text('Okay'),
+            const SizedBox(
+                height: 20), // Adding spacing between the text field and button
+            SizedBox(
+              width: double.infinity, // Make the button full width
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); // Go back to the previous screen
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(248, 245, 201, 107),
+                ),
+                child: const Text(
+                  'Okay',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
             ),
           ],
         ),
@@ -1059,85 +1076,96 @@ class CreditCardScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Stack(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(248, 245, 201, 107),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      margin: const EdgeInsets.all(5),
-                    ),
-                    const Positioned(
-                      top: 20,
-                      left: 20,
-                      child: Text(
-                        'BVC',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      top: 20,
-                      right: 20,
-                      child: Text(
-                        'VISA',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 24,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      top: 95,
-                      left: 20,
-                      child: Text(
-                        'Available balance',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 95, 95, 95),
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      top: 120,
-                      left: 20,
-                      child: Text(
-                        '2,640.24',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      top: 150,
-                      right: 20,
-                      child: Text(
-                        'Card 5679****',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 95, 95, 95),
-                        ),
-                      ),
-                    ),
-                  ],
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(248, 245, 201, 107),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  margin: const EdgeInsets.only(left: 30, right: 30),
                 ),
+                const Positioned(
+                  top: 30,
+                  left: 50,
+                  child: Text(
+                    'BVC',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                      color: Color.fromARGB(255, 99, 86, 86),
+                    ),
+                  ),
+                ),
+                const Positioned(
+                  top: 30,
+                  right: 50,
+                  child: Text(
+                    'VISA',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 32,
+                      color: Color.fromARGB(255, 99, 86, 86),
+                    ),
+                  ),
+                ),
+                const Positioned(
+                  top: 265,
+                  left: 50,
+                  child: Text(
+                    'Available balance',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 95, 95, 95),
+                    ),
+                  ),
+                ),
+                const Positioned(
+                  top: 300,
+                  left: 50,
+                  child: Text(
+                    '2,640.24',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 36,
+                      color: Color.fromARGB(255, 99, 86, 86),
+                    ),
+                  ),
+                ),
+                const Positioned(
+                  top: 315,
+                  right: 40,
+                  child: Text(
+                    'Card 56****',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 95, 95, 95),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 150,
+                  top: 145,
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.rss_feed_rounded,
+                      color: Color.fromARGB(255, 95, 95, 95),
+                      size: 70,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 }
-
 
 
 
@@ -1190,43 +1218,56 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 200,
+                  height: 400,
                   decoration: BoxDecoration(
-                    color: isCardFrozen ? Colors.grey[300] : const Color.fromARGB(248, 245, 201, 107),
+                    color: isCardFrozen
+                        ? Colors.grey[300]
+                        : const Color.fromARGB(248, 245, 201, 107),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  margin: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(35),
                 ),
               ],
             ),
             const Positioned(
-              top: 20,
-              left: 20,
+              top: 70,
+              left: 50,
               child: Text(
                 'BVC',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: Colors.black,
+                   color: Color.fromARGB(255, 99, 86, 86),
                 ),
               ),
             ),
             const Positioned(
-              top: 20,
-              right: 20,
+              top: 70,
+              right: 50,
               child: Text(
                 'VISA',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
                   fontSize: 24,
-                  color: Colors.black,
+                   color: Color.fromARGB(255, 99, 86, 86),
                 ),
               ),
             ),
+            Positioned(
+                  left: 150,
+                  top: 155,
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.rss_feed_rounded,
+                      color: Color.fromARGB(255, 95, 95, 95),
+                      size: 70,
+                    ),
+                  ),
+                ),
             const Positioned(
-              top: 95,
-              left: 20,
+              top: 290,
+              left: 50,
               child: Text(
                 'Available balance',
                 style: TextStyle(
@@ -1236,20 +1277,20 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
               ),
             ),
             const Positioned(
-              top: 120,
-              left: 20,
+              top: 320,
+              left: 50,
               child: Text(
                 '2,640.24',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
-                  color: Colors.black,
+                   color: Color.fromARGB(255, 99, 86, 86),
                 ),
               ),
             ),
             Positioned(
-              top: 150,
-              right: 20,
+              top: 340,
+              right: 50,
               child: Text(
                 'Card ${isCardFrozen ? 'Frozen' : '5679****'}',
                 style: const TextStyle(
@@ -1260,14 +1301,14 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
               ),
             ),
             Positioned(
-              top: 400,
+              top: 460,
               left: 150,
               child: GestureDetector(
                 onTap: toggleCardFreeze,
                 child: Icon(
                   size: 70,
-                  Icons.severe_cold_rounded,
-                  color: isCardFrozen ? Colors.red : Colors.green,
+                  Icons.ac_unit_rounded,
+                  color: isCardFrozen ? const Color.fromARGB(248, 245, 201, 107) : Colors.grey[300],
                 ),
               ),
             ),
