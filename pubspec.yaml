@@ -38,7 +38,15 @@ dependencies:
   cupertino_icons: ^1.0.6
   qr_code_scanner: ^1.0.1
   shared_preferences: ^2.2.2
+  icons_launcher: ^2.1.7
   
+icons_launcher:
+  image_path: 'assets/icon.png'
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
 dev_dependencies:
   flutter_test:
