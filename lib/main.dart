@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hello,\nAlexander 👋'),
-        iconTheme: const IconThemeData(color: Colors.grey),
+        // iconTheme: const IconThemeData(color: Colors.grey),
         foregroundColor: Colors.black,
         //   leading: IconButton(
         //     icon: Icon(Icons.menu),
@@ -74,78 +74,83 @@ class _MyHomePageState extends State<MyHomePage> {
           ? Column(
               children: [
                 const SizedBox(height: 20),
-                Stack(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(248, 245, 201, 107),
-                        borderRadius: BorderRadius.circular(20),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width *
+                      0.9, // Adjust container width as needed
+                  height: 200,
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(248, 245, 201, 107),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        margin: const EdgeInsets.all(5),
                       ),
-                      margin: const EdgeInsets.all(5),
-                    ),
-                    const Positioned(
-                      top: 20,
-                      left: 20,
-                      child: Text(
-                        'BVC',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.black,
+                      const Positioned(
+                        top: 20,
+                        left: 20,
+                        child: Text(
+                          'BVC',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
-                    const Positioned(
-                      top: 20,
-                      right: 20,
-                      child: Text(
-                        'VISA',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 24,
-                          color: Colors.black,
+                      const Positioned(
+                        top: 20,
+                        right: 20,
+                        child: Text(
+                          'VISA',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 24,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
-                    const Positioned(
-                      top: 95,
-                      left: 20,
-                      child: Text(
-                        'Available balance',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 95, 95, 95),
+                      const Positioned(
+                        top: 95,
+                        left: 20,
+                        child: Text(
+                          'Available balance',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 95, 95, 95),
+                          ),
                         ),
                       ),
-                    ),
-                    const Positioned(
-                      top: 120,
-                      left: 20,
-                      child: Text(
-                        '2,640.24',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40,
-                          color: Colors.black,
+                      const Positioned(
+                        top: 120,
+                        left: 20,
+                        child: Text(
+                          '2,640.24',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
-                    const Positioned(
-                      top: 150,
-                      right: 20,
-                      child: Text(
-                        'Card 5679****',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 95, 95, 95),
+                      const Positioned(
+                        top: 150,
+                        right: 20,
+                        child: Text(
+                          'Card 5679****',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: Color.fromARGB(255, 95, 95, 95),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Stack(
                   children: [
@@ -384,6 +389,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ? const CardPage()
               : _selectedIndex == 2
                   ? const QRViewExample()
+                  : _selectedIndex == 3
+                  ?  const BMICalculatorScreen ()
                   : const SizedBox(),
       // QRCodeScanner
       bottomNavigationBar: BottomNavigationBar(
@@ -415,7 +422,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // width: 20,
               child: Icon(Icons.person),
             ),
-            label: 'Members',
+            label: 'BMI',
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
@@ -446,366 +453,379 @@ class CardPage extends StatelessWidget {
     return Column(
       children: [
         // const SizedBox(height: 20),
-        Stack(
-          children: [
-            Container(
-              // Container above the row
-              height: 100,
-              // color: Colors.white,
-            ),
-            const Positioned(
-              top: 20,
-              left: 120,
-              child: Text(
-                'Available to spend',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                  color: Color.fromARGB(255, 95, 95, 95),
+
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: Stack(
+            children: [
+              Container(
+                // Container above the row
+                height: 100,
+                // color: Colors.white,
+              ),
+              const Positioned(
+                top: 20,
+                left: 120,
+                child: Text(
+                  'Available to spend',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    color: Color.fromARGB(255, 95, 95, 95),
+                  ),
                 ),
               ),
-            ),
-            const Positioned(
-              top: 30,
-              left: 80,
-              child: Text(
-                '2,640.24',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 48,
-                  color: Colors.black,
+              const Positioned(
+                top: 30,
+                left: 80,
+                child: Text(
+                  '2,640.24',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 48,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
               const SizedBox(height: 20),
-              Stack(
-                children: [
-                  Container(
-                    width: 310,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 236, 139, 148),
-                      borderRadius: BorderRadius.circular(20),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 310,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 236, 139, 148),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: const EdgeInsets.only(left: 20),
                     ),
-                    margin: const EdgeInsets.only(left: 20),
-                  ),
-                  const Positioned(
-                    top: 20,
-                    left: 40,
-                    child: Text(
-                      'FQC',
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 22,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 20,
+                      left: 40,
+                      child: Text(
+                        'FQC',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 22,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 20,
-                    right: 20,
-                    child: Text(
-                      '**** 4246',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 20,
+                      right: 20,
+                      child: Text(
+                        '**** 4246',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 115,
-                    left: 40,
-                    child: Text(
-                      'Current balance',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 95, 95, 95),
+                    const Positioned(
+                      top: 115,
+                      left: 40,
+                      child: Text(
+                        'Current balance',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 95, 95, 95),
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 130,
-                    left: 38,
-                    child: Text(
-                      '\$368.00',
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 36,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 130,
+                      left: 38,
+                      child: Text(
+                        '\$368.00',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 36,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 130,
-                    right: 20,
-                    child: Text(
-                      'VISA',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 32,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 130,
+                      right: 20,
+                      child: Text(
+                        'VISA',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Stack(
-                children: [
-                  Container(
-                    width: 310,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 176, 214, 245),
-                      borderRadius: BorderRadius.circular(20),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 310,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 176, 214, 245),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      margin: const EdgeInsets.all(8),
                     ),
-                    margin: const EdgeInsets.all(8),
-                  ),
-                  const Positioned(
-                    top: 20,
-                    left: 40,
-                    child: Text(
-                      'FQC',
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 22,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 20,
+                      left: 40,
+                      child: Text(
+                        'FQC',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 22,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 20,
-                    right: 20,
-                    child: Text(
-                      '**** 4246',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 20,
+                      right: 20,
+                      child: Text(
+                        '**** 4246',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 115,
-                    left: 40,
-                    child: Text(
-                      'Current balance',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 95, 95, 95),
+                    const Positioned(
+                      top: 115,
+                      left: 40,
+                      child: Text(
+                        'Current balance',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 95, 95, 95),
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 130,
-                    left: 38,
-                    child: Text(
-                      '\$368.00',
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 36,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 130,
+                      left: 38,
+                      child: Text(
+                        '\$368.00',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 36,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  const Positioned(
-                    top: 130,
-                    right: 20,
-                    child: Text(
-                      'VISA',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 32,
-                        color: Colors.black,
+                    const Positioned(
+                      top: 130,
+                      right: 20,
+                      child: Text(
+                        'VISA',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
         ),
-        Stack(
-          children: [
-            Container(
-              width: 340,
-              height: 248,
-              decoration: BoxDecoration(
-                // color: const Color.fromARGB(255, 176, 214, 245),
-                borderRadius: BorderRadius.circular(20),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: Stack(
+            children: [
+              Container(
+                width: 340,
+                height: 248,
+                decoration: BoxDecoration(
+                  // color: const Color.fromARGB(255, 176, 214, 245),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                margin: const EdgeInsets.all(2),
               ),
-              margin: const EdgeInsets.all(2),
-            ),
-            const Positioned(
-              top: 10,
-              left: 72,
-              child: Text(
-                'Physical card   **** 4246',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 95, 95, 95),
+              const Positioned(
+                top: 10,
+                left: 72,
+                child: Text(
+                  'Physical card   **** 4246',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 95, 95, 95),
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              left: 30,
-              top: 50,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SecondScreen()),
-                  );
-                  // const SecondScreen();
-                  if (kDebugMode) {
-                    print('Icon pressed!');
-                  }
-                },
-                child: const Icon(
-                  Icons.add_circle,
+              Positioned(
+                left: 30,
+                top: 50,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SecondScreen()),
+                    );
+                    // const SecondScreen();
+                    if (kDebugMode) {
+                      print('Icon pressed!');
+                    }
+                  },
+                  child: const Icon(
+                    Icons.add_circle,
+                    size: 50,
+                    color: Color.fromARGB(248, 185, 181, 172),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 150,
+                top: 50,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreditCardScreen()),
+                    );
+                    // const SecondScreen();
+                    if (kDebugMode) {
+                      print('Icon pressed!');
+                    }
+                  },
+                  child: const Icon(
+                    Icons.credit_card,
+                    size: 50,
+                    color: Color.fromARGB(248, 185, 181, 172),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 257,
+                top: 50,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CardFreezeScreen(
+                                key: UniqueKey(),
+                              )),
+                    );
+                    // const SecondScreen();
+                    if (kDebugMode) {
+                      print('Icon pressed!');
+                    }
+                  },
+                  child: const Icon(
+                    Icons.ac_unit_rounded,
+                    size: 50,
+                    color: Color.fromARGB(248, 185, 181, 172),
+                  ),
+                ),
+              ),
+              const Positioned(
+                top: 105,
+                left: 18,
+                child: Text(
+                  'Add Money',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 95, 95, 95),
+                  ),
+                ),
+              ),
+              const Positioned(
+                top: 105,
+                left: 130,
+                child: Text(
+                  'Credit Details',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 95, 95, 95),
+                  ),
+                ),
+              ),
+              const Positioned(
+                top: 105,
+                left: 243,
+                child: Text(
+                  'Freeze Card',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 95, 95, 95),
+                  ),
+                ),
+              ),
+              const Positioned(
+                top: 155,
+                left: 18,
+                child: Text(
+                  'Manage Card',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(248, 185, 181, 172),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 185,
+                left: 10,
+                right: 10,
+                child: CustomPaint(
+                  painter: LinePainter(),
+                ),
+              ),
+              const Positioned(
+                left: 18,
+                top: 203,
+                child: Icon(
+                  Icons.settings_outlined,
+                  size: 40,
+                  color: Color.fromARGB(248, 185, 181, 172),
+                ),
+              ),
+              const Positioned(
+                top: 213,
+                left: 82,
+                child: Text(
+                  'Manage payment methods',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              const Positioned(
+                right: 20,
+                top: 198,
+                child: Icon(
+                  Icons.chevron_right_rounded,
                   size: 50,
                   color: Color.fromARGB(248, 185, 181, 172),
                 ),
               ),
-            ),
-            Positioned(
-              left: 150,
-              top: 50,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CreditCardScreen()),
-                  );
-                  // const SecondScreen();
-                  if (kDebugMode) {
-                    print('Icon pressed!');
-                  }
-                },
-                child: const Icon(
-                  Icons.credit_card,
-                  size: 50,
-                  color: Color.fromARGB(248, 185, 181, 172),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 257,
-              top: 50,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CardFreezeScreen(
-                              key: UniqueKey(),
-                            )),
-                  );
-                  // const SecondScreen();
-                  if (kDebugMode) {
-                    print('Icon pressed!');
-                  }
-                },
-                child: const Icon(
-                  Icons.ac_unit_rounded,
-                  size: 50,
-                  color: Color.fromARGB(248, 185, 181, 172),
-                ),
-              ),
-            ),
-            const Positioned(
-              top: 105,
-              left: 18,
-              child: Text(
-                'Add Money',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 95, 95, 95),
-                ),
-              ),
-            ),
-            const Positioned(
-              top: 105,
-              left: 130,
-              child: Text(
-                'Credit Details',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 95, 95, 95),
-                ),
-              ),
-            ),
-            const Positioned(
-              top: 105,
-              left: 243,
-              child: Text(
-                'Freeze Card',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 95, 95, 95),
-                ),
-              ),
-            ),
-            const Positioned(
-              top: 155,
-              left: 18,
-              child: Text(
-                'Manage Card',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(248, 185, 181, 172),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 185,
-              left: 10,
-              right: 10,
-              child: CustomPaint(
-                painter: LinePainter(),
-              ),
-            ),
-            const Positioned(
-              left: 18,
-              top: 203,
-              child: Icon(
-                Icons.settings_outlined,
-                size: 40,
-                color: Color.fromARGB(248, 185, 181, 172),
-              ),
-            ),
-            const Positioned(
-              top: 213,
-              left: 82,
-              child: Text(
-                'Manage payment methods',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const Positioned(
-              right: 20,
-              top: 198,
-              child: Icon(
-                Icons.chevron_right_rounded,
-                size: 50,
-                color: Color.fromARGB(248, 185, 181, 172),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
@@ -1017,7 +1037,7 @@ class _QRViewExampleState extends State<QRViewExample> {
 }
 
 class SecondScreen extends StatelessWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+  const SecondScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1033,7 +1053,7 @@ class SecondScreen extends StatelessWidget {
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Enter amount',
-                border: OutlineInputBorder(),
+                border:const OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.grey[200],
               ),
@@ -1167,12 +1187,11 @@ class CreditCardScreen extends StatelessWidget {
   }
 }
 
-
-
 class CardFreezeScreen extends StatefulWidget {
   const CardFreezeScreen({required Key key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CardFreezeScreenState createState() => _CardFreezeScreenState();
 }
 
@@ -1237,7 +1256,7 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                   color: Color.fromARGB(255, 99, 86, 86),
+                  color: Color.fromARGB(255, 99, 86, 86),
                 ),
               ),
             ),
@@ -1250,21 +1269,21 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
                   fontSize: 24,
-                   color: Color.fromARGB(255, 99, 86, 86),
+                  color: Color.fromARGB(255, 99, 86, 86),
                 ),
               ),
             ),
             Positioned(
-                  left: 150,
-                  top: 155,
-                  child: GestureDetector(
-                    child: const Icon(
-                      Icons.rss_feed_rounded,
-                      color: Color.fromARGB(255, 95, 95, 95),
-                      size: 70,
-                    ),
-                  ),
+              left: 150,
+              top: 155,
+              child: GestureDetector(
+                child: const Icon(
+                  Icons.rss_feed_rounded,
+                  color: Color.fromARGB(255, 95, 95, 95),
+                  size: 70,
                 ),
+              ),
+            ),
             const Positioned(
               top: 290,
               left: 50,
@@ -1284,7 +1303,7 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
-                   color: Color.fromARGB(255, 99, 86, 86),
+                  color: Color.fromARGB(255, 99, 86, 86),
                 ),
               ),
             ),
@@ -1308,7 +1327,9 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
                 child: Icon(
                   size: 70,
                   Icons.ac_unit_rounded,
-                  color: isCardFrozen ? const Color.fromARGB(248, 245, 201, 107) : Colors.grey[300],
+                  color: isCardFrozen
+                      ? const Color.fromARGB(248, 245, 201, 107)
+                      : Colors.grey[300],
                 ),
               ),
             ),
@@ -1316,5 +1337,120 @@ class _CardFreezeScreenState extends State<CardFreezeScreen> {
         ),
       ),
     );
+  }
+}
+
+class BMICalculatorScreen extends StatefulWidget {
+  const BMICalculatorScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _BMICalculatorScreenState createState() => _BMICalculatorScreenState();
+}
+
+class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
+  final TextEditingController _heightController = TextEditingController();
+  final TextEditingController _weightController = TextEditingController();
+  double _bmi = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: 500,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(248, 245, 201, 107),
+          borderRadius: BorderRadius.circular(20),
+         ),
+         margin: const EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                controller: _heightController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Height (cm)',
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _weightController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Weight (kg)',
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _calculateBMI,
+                child: const Text('Calculate BMI'),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'BMI: ${_bmi.toStringAsFixed(2)}',
+                style: const TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 20),
+              _bmi > 0
+                  ? Column(
+                      children: [
+                        const Text(
+                          'Normal BMI Range: 18.5 - 24.9',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        const SizedBox(height: 10),
+                         Text(
+                          _getBMIStatus(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: _bmi >= 18.5 && _bmi <= 24.9
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _calculateBMI() {
+    double height = double.tryParse(_heightController.text) ?? 0;
+    double weight = double.tryParse(_weightController.text) ?? 0;
+
+    if (height > 0 && weight > 0) {
+      double bmi = weight / ((height / 100) * (height / 100));
+      setState(() {
+        _bmi = bmi;
+      });
+    } else {
+      setState(() {
+        _bmi = 0;
+      });
+    }
+  }
+
+  String _getBMIStatus() {
+    double height = double.tryParse(_heightController.text) ?? 0;
+    double weight = double.tryParse(_weightController.text) ?? 0;
+    if (_bmi < 18.5) {
+      double weightDifference = 18.5 * ((height / 100) * (height / 100)) - weight;
+      return 'Underweight! You need to gain ${weightDifference.toStringAsFixed(2)} kg to reach a normal BMI.';
+    } else if (_bmi >= 18.5 && _bmi <= 24.9) {
+      return 'Normal weight';
+    } else if (_bmi > 24.9 && _bmi <= 29.9) {
+      double weightDifference = weight - 24.9 * ((height / 100) * (height / 100));
+      return 'Overweight! You need to lose ${weightDifference.toStringAsFixed(2)} kg to reach a normal BMI.';
+    } else {
+      return 'Obesity';
+    }
   }
 }
