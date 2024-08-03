@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Banking App',
+      title: 'My Banking Application',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
@@ -47,14 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hello,\nAlexander 👋'),
-        // iconTheme: const IconThemeData(color: Colors.grey),
         foregroundColor: Colors.black,
-        //   leading: IconButton(
-        //     icon: Icon(Icons.menu),
-        //     onPressed: () {
-        //       // Add your onPressed logic here
-        //     },
-        // ),
+
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_active_outlined),
@@ -216,8 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       width: double.infinity,
                       height: 250,
-                      decoration: BoxDecoration(
-                        // color: const Color.fromARGB(255, 243, 232, 135),
+                      decoration: BoxDecoration( 
                         borderRadius: BorderRadius.circular(10),
                       ),
                       margin: const EdgeInsets.all(5),
